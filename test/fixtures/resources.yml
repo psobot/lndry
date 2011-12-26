@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  type_id: 1
+  order: 1
+  name: MyString
+  location: MyString
+  description: MyText
+
+two:
+  type_id: 1
+  order: 1
+  name: MyString
+  location: MyString
+  description: MyText
