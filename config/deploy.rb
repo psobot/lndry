@@ -1,16 +1,16 @@
 require 'bundler/capistrano'
 require './config/boot'
-require 'airbrake/capistrano'
 
 default_run_options[:pty] = true
 
 set :application, 'lndry'
 set :scm,         :git
-set :repository,  'git@github.com:psobot/lndr.me.git'
+set :repository,  'git@github.com:psobot/lndry.git'
 set :deploy_via,  :remote_cache
-set :user,        'deploy'
+set :user,        'psobot'
 set :use_sudo,    false
 set :keep_releases, 2
+set :rvm_type, :user  # Copy the exact line. I really mean :user here
 # Remove No such file/directory warnings.
 set :normalize_asset_timestamps, false
 
