@@ -6,19 +6,21 @@ $blue: #22395a
 
 body
   background: $blue
+  font-family: 'Armata', sans-serif
+  a
+    color: rgba(255, 255, 255, 0.6)
   .container
     width: 800px
     margin: 0 auto
-    .email_me
+    padding: 40px 0
+    .notice
       text-align: center
       margin: 0 auto
       color: rgba(255, 255, 255, 0.9)
-      font-family: 'Armata', sans-serif
       input[type=text]
         background: transparent
         border: none
         color: rgba(255, 255, 255, 0.9)
-        font-family: 'Armata', sans-serif
         text-align: center
         font-size: 1.1em
         padding: 5px 0
@@ -27,7 +29,6 @@ body
       input[type=submit]
         background: transparent
         color: rgba(255, 255, 255, 0.9)
-        font-family: 'Armata', sans-serif
         text-align: center
         font-weight: bold
         font-size: 1.2em
@@ -42,10 +43,12 @@ body
       text-align: center
       &.dryer
         background: image-url('dryer_half.png') top center no-repeat
+        &.busy
+          background: image-url('dryer_half.gif') top center no-repeat
       &.washer
         background: image-url('washer_half.png') top center no-repeat
-      div
-        font-family: 'Armata', sans-serif
+        &.busy
+          background: image-url('washer_half.gif') top center no-repeat
       .name
         margin-bottom: 10px
       .name
@@ -54,3 +57,7 @@ body
         color: rgba(255, 255, 255, 0.9)
       .time
         font-size: 1.3em
+    .footer
+      text-align: center
+      color: rgba(255, 255, 255, 0.4)
+

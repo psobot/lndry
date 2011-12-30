@@ -1,10 +1,14 @@
-- if Resource.washer_available?
-  .email_me
+.notice
+  - if !Resource.washer_available? and not Message.pending_for?(cookies[:email])
     = form_for :email_form, :url => :letmeknow do |f|
       = f.submit "email me"
       at
       = f.text_field :email, :value => cookies[:email], :placeholder => 'my email address'
       when a washer is available
+  - elsif not flash.empty?
+    - flash.each do |type, message|
+      .message{:class => type}
+        = message
 - Resource.all.each do |resource|
   - classes = [resource.type.slug] + (resource.is_in_use? ? ['busy'] : ['available'])
   .resource{:class => classes}
@@ -15,5 +19,5 @@
     - else
       .not.available
         will be available in 
-      .time
+      .time{:data => {:time => resource.will_be_available}}
         #{distance_of_time_in_words Time.now.utc, resource.will_be_available}

@@ -1,11 +1,15 @@
 !!!5
 %head
-  %title Lndry
+  %title lndry
   = stylesheet_link_tag    "application"
   = stylesheet_link_tag    'http://fonts.googleapis.com/css?family=Armata'
   = javascript_include_tag "application"
+  = favicon_link_tag       "favicon.png"
   = csrf_meta_tags
 
 %body
   .container
     = yield
+    .footer
+      lovingly crafted from bits and bytes by
+      = link_to "peter sobot", 'http://petersobot.com'

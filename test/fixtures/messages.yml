@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  when: 2011-12-26 18:56:43
+  if: MyString
+
+two:
+  user_id: 1
+  when: 2011-12-26 18:56:43
+  if: MyString

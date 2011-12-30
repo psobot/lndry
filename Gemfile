@@ -12,6 +12,7 @@ gem 'rinku',          '1.2.2'
 gem 'multi_json',     '1.0.3'
 gem 'will_paginate',  '~> 3.0'
 gem 'active_link_to', '1.0.0'
+gem 'postageapp'
 gem 'nokogiri'
 
 group :development do
