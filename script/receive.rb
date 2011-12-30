@@ -16,7 +16,7 @@ HOST = settings[env]['host']
 INCOMING_EMAIL_KEY = settings[env]['incoming_email_key']
 
 if env == 'production'
-  email = File.open(STDIN)
+  email = STDIN
 else
   email = File.open(File.dirname(__FILE__) + '/mail.txt')
 end
