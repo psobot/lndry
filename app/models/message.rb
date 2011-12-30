@@ -7,13 +7,15 @@ class Message < ActiveRecord::Base
     all.each do |message|
       logger.debug "Evaluating message for user ##{message.user_id}"
       if message.when and message.when < Time.now.utc
-        UserMailer.send_reminder_to message.user
+        UserMailer.done_reminder_for(message.user).deliver
       elsif message.if
         begin
           if Resource.send(message.if)
-            r = UserMailer.send_available_to(message.user) 
-            if r  #TODO: Fix
+            response = UserMailer.available_reminder_for(message.user).deliver
+            if response.status == "ok"
               message.destroy
+            else
+              logger.debug "Whoops, something went very wrong. #{response.message}"
             end
           end
         rescue NoMethodError
