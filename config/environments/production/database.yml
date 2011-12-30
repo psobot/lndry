@@ -1,0 +1,15 @@
+development:
+  adapter: mysql2
+  database: lndry_dev
+  username: root
+
+test:
+  adapter: mysql2
+  database: lndry_test
+  username: root
+
+production:
+  adapter: mysql2
+  database: lndry_production
+  username: lndry
+  password: asg9hwei12nwgonsig9
