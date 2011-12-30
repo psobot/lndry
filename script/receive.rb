@@ -20,7 +20,7 @@ if env == 'production'
 else
   email = File.open(File.dirname(__FILE__) + '/mail.txt')
 end
-message = Mail.read(email)
+message = Mail.read_from_string(email.read)
 
 name = message[:from].to_s.split('<')[0].strip rescue nil
 email_address = message[:from].addresses[0] rescue nil
