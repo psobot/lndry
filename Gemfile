@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
-gem 'rails',          '3.1.1'
+gem 'rack',           '1.3.5'
+gem 'rails',          '3.1.2'
 gem 'jquery-rails',   '1.0.14'
 gem 'haml',           '3.1.3'
 gem 'sass',           '3.1.8'
