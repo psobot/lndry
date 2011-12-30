@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111227000027) do
+ActiveRecord::Schema.define(:version => 20111230211500) do
 
   create_table "messages", :force => true do |t|
     t.integer  "user_id"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(:version => 20111227000027) do
 
   create_table "users", :force => true do |t|
     t.string   "email"
+    t.string   "name"
     t.string   "twitter"
     t.string   "key"
     t.datetime "created_at"
@@ -52,6 +53,7 @@ ActiveRecord::Schema.define(:version => 20111227000027) do
     t.integer  "resource_id"
     t.datetime "start"
     t.datetime "finish"
+    t.text     "raw_email"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

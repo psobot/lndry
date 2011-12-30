@@ -9,6 +9,41 @@ class Resource < ActiveRecord::Base
     end
   end
 
+  def self.find_by_email email
+    
+    # Slug could be "washer", "washer1", "dryer2", etc...
+    # If slug has no number on the end, assume "first available"
+    # else, kick whatever was already used and add new use.
+
+    matches = email.match /([a-z]+)([0-9])?@#{HOST}/i
+    
+    if not matches
+      render :nothing
+      return
+    end
+
+    _type = Type.find_by_slug matches[1]
+    raise ActiveRecord::RecordNotFound if not _type
+
+    _order = matches[2]
+
+    if not _order
+      r = self.not_in_use.where('type_id = ?', _type.id).first
+      r = self.next_to_finish_of_type _type if not r
+      r
+    else
+      self.find_by_type_and_order _type, _order
+    end
+  end
+
+  def self.next_to_finish_of_type _type
+     joins(:uses).where('type_id = ? AND uses.finish > ?', _type.id, Time.now.utc).order('uses.finish ASC').first
+  end
+
+  def self.not_in_use
+    where("NOT EXISTS (SELECT id FROM uses WHERE uses.resource_id = resources.id AND ? BETWEEN start and finish)", Time.now.utc)
+  end
+
   def is_in_use?
     uses.where("? BETWEEN start and finish", Time.now.utc).present?
   end

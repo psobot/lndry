@@ -8,3 +8,4 @@ PostageApp.configure do |config|
 end
 
 HOST = settings[env]['host']
+INCOMING_EMAIL_KEY = settings[env]['incoming_email_key']

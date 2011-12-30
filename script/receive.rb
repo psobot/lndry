@@ -2,5 +2,28 @@
 require "rubygems"
 require "bundler/setup"
 require "mail"
+require "cgi"
 
-File.open(File.dirname(__FILE__) + '/mail.txt', 'w').write(STDIN.read)
+settings_file = File.expand_path('../config/settings.yml', File.dirname(__FILE__))
+settings = YAML::load(File.open(settings_file))
+
+env = if RUBY_PLATFORM.include?('darwin')
+        'development'
+      else
+        'production'
+      end
+HOST = settings[env]['host']
+INCOMING_EMAIL_KEY = settings[env]['incoming_email_key']
+
+if env == 'production'
+  email = File.open(STDIN)
+else
+  email = File.open(File.dirname(__FILE__) + '/mail.txt')
+end
+message = Mail.read(email)
+
+name = message[:from].to_s.split('<')[0].strip rescue nil
+email_address = message[:from].addresses[0] rescue nil
+to = message[:to]
+
+`curl -d name=#{CGI.escape(name)} -d email=#{CGI.escape(email_address)} -d key=#{CGI.escape(INCOMING_EMAIL_KEY)} -d raw=#{CGI.escape(email.read)} -d to=#{CGI.escape(to.to_s)} http://#{HOST}/receive`
