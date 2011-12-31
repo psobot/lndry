@@ -24,14 +24,16 @@ class ResourcesController < ApplicationController
       return
     end
 
-    find_or_create_user params[:email]
+    message = parse_incoming params[:raw]
+
+    find_or_create_user message[:email]
 
     unless @user.name
-      @user.name = params[:name]
+      @user.name = message[:name]
       @user.save!
     end
 
-    @resource = Resource.find_by_email(params[:to])
+    @resource = Resource.find_by_email(message[:to])
     if @resource.is_in_use?
       existing = Use.current.where('resource_id = ?', @resource.id).first
       existing.finish = Time.now.utc
@@ -57,6 +59,19 @@ protected
       @user = User.create! :email => email
     end
     @user
+  end
+
+  def parse_incoming string
+    message = Mail.read_from_string(string)
+
+    from_name = message[:from].to_s.split('<')[0].strip rescue nil
+    email = message[:from].addresses[0] rescue nil
+
+    {
+      :name => from_name,
+      :email => email,
+      :to => message[:delivered_to]
+    }
   end
 
 end
