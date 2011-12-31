@@ -7,7 +7,12 @@ class Message < ActiveRecord::Base
     all.each do |message|
       logger.debug "Evaluating message for user ##{message.user_id}"
       if message.when and message.when < Time.now.utc
-        UserMailer.done_reminder_for(message.user).deliver
+        response = UserMailer.done_reminder_for(message.user).deliver
+        if response.status == "ok"
+          message.destroy
+        else
+          logger.debug "Whoops, something went very wrong. #{response.message}"
+        end
       elsif message.if
         begin
           if Resource.send(message.if)
