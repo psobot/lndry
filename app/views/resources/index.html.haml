@@ -19,5 +19,5 @@
     - else
       .not.available
         will be available in 
-      .time{:data => {:time => resource.will_be_available}}
+      .time{:data => {:time => resource.will_be_available.to_i * 1000}}
         #{distance_of_time_in_words Time.now.utc, resource.will_be_available}

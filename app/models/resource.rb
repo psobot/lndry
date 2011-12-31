@@ -30,10 +30,13 @@ class Resource < ActiveRecord::Base
     if not _order
       r = self.not_in_use.where('type_id = ?', _type.id).first
       r = self.next_to_finish_of_type _type if not r
-      r
     else
-      self.find_by_type_id_and_order _type.id, _order
+      r = self.find_by_type_id_and_order _type.id, _order
     end
+
+    logger.debug "Returning resource id #{r.id} for email #{email}"
+
+    r
   end
 
   def self.next_to_finish_of_type _type

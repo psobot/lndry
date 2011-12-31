@@ -1,12 +1,15 @@
 !!!5
 %head
-  %title lndry
+  %title lndr.me
   = stylesheet_link_tag    "application"
   = stylesheet_link_tag    'http://fonts.googleapis.com/css?family=Armata'
   = javascript_include_tag "application"
   = favicon_link_tag       "favicon.png"
   %meta{ :name => "viewport", :content => "width = device-width" }
   %meta{ :name => "apple-mobile-web-app-capable", :content => "yes" }
+  %link{ :rel => "apple-touch-icon", :href => "apple-touch-icon-57x57.png" }
+  %link{ :rel => "apple-touch-icon", :href => "apple-touch-icon-72x72.png", :sizes => '72x72' }
+  %link{ :rel => "apple-touch-icon", :href => "apple-touch-icon-114x114.png", :sizes => '114x114' }
   = csrf_meta_tags
 
 %body
