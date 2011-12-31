@@ -55,7 +55,7 @@ class Resource < ActiveRecord::Base
 
   def email_variables
     {
-      :name => name.downcase
+      :resource_name => name.downcase
     }
   end
 

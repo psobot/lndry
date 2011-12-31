@@ -23,9 +23,9 @@ class User < ActiveRecord::Base
 
   def email_variables
     {
-      :first_name => first_name,
+      :first_name => (first_name or "resident"),
       :last_name => last_name,
-      :name => name
+      :name => (name or "resident")
     }
   end
 
