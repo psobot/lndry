@@ -65,12 +65,12 @@ protected
     message = Mail.read_from_string(string)
 
     from_name = message[:from].to_s.split('<')[0].strip rescue nil
-    email = message[:from].addresses[0] rescue nil
+    email = message[:from].addresses[0].to_s rescue nil
 
     {
       :name => from_name,
       :email => email,
-      :to => message[:delivered_to]
+      :to => message[:delivered_to].to_s
     }
   end
 
