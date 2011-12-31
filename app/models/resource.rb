@@ -4,8 +4,9 @@ class Resource < ActiveRecord::Base
   has_many :uses
 
   Type.all.each do |type|
+    # Returns the first available washer/dryer/whatever, or nil if there is none.
     define_singleton_method "#{type.slug}_available?" do
-      joins(:uses).where("type_id = ? AND ? BETWEEN start and finish", type.id, Time.now.utc).count < Resource.where('type_id = ?', type.id).count
+      where('type_id = ?', type.id).not_in_use.first
     end
   end
 
@@ -45,6 +46,17 @@ class Resource < ActiveRecord::Base
 
   def self.not_in_use
     where("NOT EXISTS (SELECT id FROM uses WHERE uses.resource_id = resources.id AND ? BETWEEN start and finish)", Time.now.utc)
+  end
+
+  def name
+    return attributes['name'] if attributes['name']
+    return (type.name + ' ' + order.to_s)
+  end
+
+  def email_variables
+    {
+      :name => name.downcase
+    }
   end
 
   def is_in_use?

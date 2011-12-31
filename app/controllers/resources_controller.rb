@@ -13,7 +13,9 @@ class ResourcesController < ApplicationController
   def letmeknow
     cookies[:email] = params[:email_form][:email]
     find_or_create_user params[:email_form][:email]
+    
     Message.create! :user_id => @user.id, :if => 'washer_available?'
+
     flash[:notice] = "You'll be notified when the next washer is available."
     redirect_to :root
   end

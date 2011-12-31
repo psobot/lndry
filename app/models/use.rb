@@ -1,3 +1,5 @@
+include  ActionView::Helpers::DateHelper
+
 class Use < ActiveRecord::Base
 
   belongs_to :resource
@@ -10,7 +12,14 @@ class Use < ActiveRecord::Base
   end
 
   def create_message
-    Message.create! :user => self.user, :when => self.finish
+    Message.create! :user => self.user, :when => self.finish, :use => self
+  end
+
+  def email_variables
+    {
+      :resource => resource.name.downcase,
+      :duration => time_ago_in_words(start)
+    }
   end
 
 end

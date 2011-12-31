@@ -12,7 +12,7 @@
 - Resource.all.each do |resource|
   - classes = [resource.type.slug] + (resource.is_in_use? ? ['busy'] : ['available'])
   .resource{:class => classes}
-    .name= resource.name or (resource.type.name + ' ' + resource.order.to_s)
+    .name= resource.name
     - if resource.is_available?
       .available
         available
