@@ -41,14 +41,16 @@ body
       padding-top: 240px
       margin: 20px 0
       text-align: center
+      background-repeat: no-repeat
+      background-position: top center
       &.dryer
-        background: url('dryer_half.png') top center no-repeat
+        background-image: url('dryer_half.png') 
         &.busy
-          background: url('dryer_half.gif') top center no-repeat
+          background-image: url('dryer_half.gif')
       &.washer
-        background: url('washer_half.png') top center no-repeat
+        background-image: url('washer_half.png')
         &.busy
-          background: url('washer_half.gif') top center no-repeat
+          background-image: url('washer_half.gif')
       .name
         margin-bottom: 10px
       .name
@@ -61,3 +63,51 @@ body
       text-align: center
       color: rgba(255, 255, 255, 0.4)
 
+  // iPhone
+  @media only screen and (max-width: 480px)
+    .container
+      width: 280px
+      margin: 0 auto
+      padding: 0
+      .notice
+        text-align: center
+        margin: 0 auto
+        color: rgba(255, 255, 255, 0.9)
+        input[type=text]
+          background: transparent
+          border: none
+          color: rgba(255, 255, 255, 0.9)
+          text-align: center
+          font-size: 1.1em
+          padding: 5px 0
+          border-bottom: 1px solid #ccc
+          outline: none
+        input[type=submit]
+          background: transparent
+          color: rgba(255, 255, 255, 0.9)
+          text-align: center
+          font-weight: bold
+          font-size: 1.2em
+          border: 1px solid #ccc
+          border-radius: 4px
+      .resource
+        height: 79px
+        float: none
+        width: auto
+        padding: 0 0 0 70px
+        margin: 20px 0
+        text-align: left
+        background-size: 60px
+        background-repeat: no-repeat
+        background-position: left center
+        .name
+          margin-bottom: 10px
+        .name
+          color: rgba(255, 255, 255, 0.5)
+        .time, .available
+          color: rgba(255, 255, 255, 0.9)
+        .time
+          font-size: 1.3em
+      .footer
+        margin: 20px 0
+        font-size: 0.6em

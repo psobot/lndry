@@ -32,7 +32,7 @@ class Resource < ActiveRecord::Base
       r = self.next_to_finish_of_type _type if not r
       r
     else
-      self.find_by_type_and_order _type, _order
+      self.find_by_type_id_and_order _type.id, _order
     end
   end
 
