@@ -5,6 +5,11 @@ class Use < ActiveRecord::Base
   belongs_to :resource
   belongs_to :user
 
+
+  def self.total_loads_of_laundry
+    joins(:resource).where('resources.type_id = 1').count
+  end
+
   def self.current
     where("? BETWEEN start and finish", Time.now.utc)
   end
