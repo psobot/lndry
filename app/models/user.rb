@@ -3,6 +3,10 @@ class User < ActiveRecord::Base
   has_many :uses
   has_many :messages
 
+  validates :email,
+    :presence => true,
+    :format => { :with => EmailSupport::RFC822::EmailAddress }
+
   def first_name
     pieces = name.split(' ')
     if pieces.length == 1
