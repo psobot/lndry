@@ -3,7 +3,7 @@ settings = YAML::load(File.open(settings_file))
 env = Rails.env
 
 PostageApp.configure do |config|
-  config.api_key = '7uQSpPxWGKHp8vfkWt5D7o0tErsphRcg'
+  config.api_key = settings[env]['postageapp_api_key']
   config.recipient_override = settings[env]['recipient_override']
 end
 

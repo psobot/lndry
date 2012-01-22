@@ -1,3 +1,5 @@
 production:
   host: lndr.me
   incoming_email_key: as9gqu9whg19wg89wg8h1w8ghw
+  postageapp_api_key: 7uQSpPxWGKHp8vfkWt5D7o0tErsphRcg
+  secret_token: 700ec9fd8b20209bc3cc71c7cde1ca494c35ab0af893390038ff8b41a53d73fc86bcaf472043571ca7e0f0eb715dc428198b5b5f25e5dc21410c2fb81e43f547
