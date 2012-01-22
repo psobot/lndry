@@ -10,19 +10,15 @@
       .message{:class => type}
         = message
 %p
-  %span.click Click
-  %span.tap Tap
-  a machine below to claim it.
+  - if !Resource.all_busy?
+    %span.click Click
+    %span.tap Tap
+    a machine below to claim it.
 - Resource.all.each do |resource|
   - classes = ['resource', resource.type.slug] + (resource.is_in_use? ? ['busy'] : ['available'])
-  = link_to resource.email_link, :class => classes do
-    .name= resource.name
-    - if resource.is_available?
-      .available
-        available
-    - else
-      .not.available
-        will be available in 
-      .time{:data => {:time => resource.will_be_available.to_i * 1000}}
-        #{distance_of_time_in_words Time.now.utc, resource.will_be_available}
-
+  - if resource.is_available?
+    = link_to resource.email_link, :class => classes do
+      = render :partial => 'show', :locals => {:resource => resource}
+  - else
+    .resource{:class => classes}
+      = render :partial => 'show', :locals => {:resource => resource}

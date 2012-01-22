@@ -10,6 +10,10 @@ class Resource < ActiveRecord::Base
     end
   end
 
+  def self.all_busy?
+    !not_in_use.present?
+  end
+
   def self.find_by_email email
     
     # Slug could be "washer", "washer1", "dryer2", etc...
