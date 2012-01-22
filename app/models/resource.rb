@@ -64,12 +64,12 @@ class Resource < ActiveRecord::Base
 
   def email_variables
     {
-      :resource_name => name.downcase
+      :resource_name => "#{type.name.downcase} #{order}"
     }
   end
 
   def email_address
-    "#{type.name.downcase}#{order}@#{HOST}"
+    "#{type.slug}#{order}@#{HOST}"
   end
   
   def email_link

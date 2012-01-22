@@ -5,4 +5,17 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-ActiveRecord::Base.connection.execute(File.open(Rails.root+'db/seed.sql').read)
+
+washer = Type.create :name => "Washer", :slug => 'washer'
+dryer = Type.create :name => "Dryer", :slug => 'dryer'
+
+default_location = "VeloCity Laundry Room"
+washer_duration = 2220  #seconds
+dryer_duration = 3600   #seconds
+
+Resource.create :location => default_location, :type_id => washer.id, :duration => washer_duration, :order => 1
+Resource.create :location => default_location, :type_id => washer.id, :duration => washer_duration, :order => 2
+
+Resource.create :location => default_location, :type_id => dryer.id, :duration => dryer_duration, :order => 1
+Resource.create :location => default_location, :type_id => dryer.id, :duration => dryer_duration, :order => 2
+
