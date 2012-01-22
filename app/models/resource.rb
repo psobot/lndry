@@ -59,6 +59,10 @@ class Resource < ActiveRecord::Base
     }
   end
 
+  def email_address
+    "#{type.name.downcase}#{order}@#{HOST}"
+  end
+
   def is_in_use?
     uses.where("? BETWEEN start and finish", Time.now.utc).present?
   end
