@@ -1,0 +1,50 @@
+.email
+  .indent
+    From: Peter Sobot
+    %br
+    To: Sandy Wu 
+    %br
+    Subject: lndr.me assets + API key
+    %br
+    Date: Tue, 10 Jan 2012 00:22:36 -0500
+  Hey Dude,
+  %br
+  %br
+  Just wrote a super-basic API for lndr.me. Here it is:
+  %br
+  .indent
+    = link_to 'http://lndr.me/index.json', 'http://lndr.me/index.json'
+    %br
+    %br
+    = JSON.pretty_generate(JSON.parse(Resource.all_for_api.to_json)).gsub("\n", '<br />').gsub("  ", '&nbsp;&nbsp;').html_safe # Don't know why, but this json-two-step is required
+
+  If the washer/dryer is currently busy, free_at is the time when it will be free. If it is available, it'll show the current time.
+  %br
+  %br
+  To update the status of a washer/dryer:
+  .indent
+    http://lndr.me/receive.json
+    %br
+    &nbsp;&nbsp;GET params required:
+    %br
+    &nbsp;&nbsp;&nbsp;&nbsp;key = your api key (#{mail_to 'lndrme@petersobot.com', 'email me'} to ask for one)
+    %br
+    &nbsp;&nbsp;&nbsp;&nbsp;id = id of resource (as given by index.json)
+    %br
+    &nbsp;&nbsp;&nbsp;&nbsp;email = email address of user (required for ID, must be valid by RFC822)
+    %br
+    &nbsp;&nbsp;&nbsp;&nbsp;send_email = boolean (should the user get an email at that address?)
+
+  Email address does need to be provided (to associate a "use" with a "user") however if send_email is false, then it won't have any mail sent to it.
+  %br
+  %br
+  Theoretically, it could then just be a unique email-like string to identify that app user. That'd be a bit sketchy though, I need a good way to identify users otherwise.
+  %br
+  %br
+  A bunch of image assets are attached. These API endpoints are being pushed to production right now.
+  %br
+  %br
+  Enjoy.
+  %br
+  %br
+  \-P

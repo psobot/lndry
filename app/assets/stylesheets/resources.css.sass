@@ -9,6 +9,9 @@ body
   font-family: 'Armata', sans-serif
   a
     color: rgba(255, 255, 255, 0.6)
+  p
+    text-align: center
+    color: rgba(255, 255, 255, 0.8)
   .container
     width: 800px
     margin: 0 auto
@@ -37,11 +40,13 @@ body
     .resource
       height: 100px
       float: left
+      display: block
       width: 200px
       padding-top: 240px
       margin: 20px 0
       text-align: center
       background-repeat: no-repeat
+      text-decoration: none
       background-position: top center
       &.dryer
         background-image: url('dryer_half.png') 
@@ -62,9 +67,24 @@ body
     .footer
       text-align: center
       color: rgba(255, 255, 255, 0.4)
-      .loads
+      font-size: 0.9em
+      .separator
+        display: none
+      span
         padding: 0 0 0 20px
-
+    .click
+      display: inline
+    .tap
+      display: none
+    .email
+      background-color: rgba(255, 255, 255, 0.8)
+      padding: 10pt 20pt 20pt
+      margin-bottom: 20pt
+      font-family: monospace
+      .indent
+        padding: 10pt
+      a
+        color: rgba(0, 0, 0, 0.6)
   // iPhone
   @media only screen and (max-width: 480px)
     .container
@@ -114,7 +134,13 @@ body
         margin: 20px 0
         font-size: 0.6em
         .separator
-          display: none
-        .loads
           display: block
+        span
+          display: inline
           padding: 5px 0 0 0 
+          &.github
+            margin-left: 10pt
+      .click
+        display: none
+      .tap
+        display: inline

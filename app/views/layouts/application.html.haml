@@ -18,7 +18,12 @@
     .footer
       lovingly crafted from bits and bytes by
       = link_to "peter sobot", 'http://petersobot.com'
-      %span.separator
+      .separator
       %span.loads
         = pluralize Use.total_loads_of_laundry, 'load'
         of laundry tracked
+      .separator
+      %span.api
+        = link_to 'api', api_path
+      %span.github
+        = link_to 'github', "http://github.com/psobot/lndry"

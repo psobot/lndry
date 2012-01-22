@@ -8,12 +8,7 @@ class ResourcesController < ApplicationController
         render
       end
       format.json do
-        render :json => Resource.all.collect{|resource|{
-          :id => resource.id,
-          :name => resource.name,
-          :busy => resource.is_in_use?,
-          :free_at => resource.will_be_available
-        }}
+        render :json => Resource.all_for_api
       end
     end
   end

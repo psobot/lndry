@@ -48,6 +48,15 @@ class Resource < ActiveRecord::Base
     where("NOT EXISTS (SELECT id FROM uses WHERE uses.resource_id = resources.id AND ? BETWEEN start and finish)", Time.now.utc)
   end
 
+  def self.all_for_api
+    all.collect{|resource|{
+      :id => resource.id,
+      :name => resource.name,
+      :busy => resource.is_in_use?,
+      :free_at => resource.will_be_available
+    }}
+  end
+
   def name
     return attributes['name'] if attributes['name']
     return (type.name + ' ' + order.to_s)
@@ -61,6 +70,10 @@ class Resource < ActiveRecord::Base
 
   def email_address
     "#{type.name.downcase}#{order}@#{HOST}"
+  end
+  
+  def email_link
+    "mailto:#{self.email_address}?subject=I'm doing Laundry!&body=I just put my laundry in #{type.name.downcase} #{order}."
   end
 
   def is_in_use?
