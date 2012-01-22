@@ -17,7 +17,7 @@ task :production do
   set :rails_env,   'production'
   set :domain,      "petersobot.com"
   set :deploy_to,   "/var/www/lndr.me"
-  set :branch,      'deploy'
+  set :branch,      'master'
   role :app,  domain
   role :web,  domain
   role :db,   domain, :primary => true
