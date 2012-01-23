@@ -15,6 +15,7 @@ It's a simple Rails app, but it uses Whenever to send emails out every 2 minutes
   dryer2:		"| /usr/local/bin/ruby /var/www/lndr.me/current/script/receive.rb"
 
 As well, it makes use of PostageApp (http://postageapp.com) to send transactional email - you'll need an API key from the wonderful folks there.
+Note: to deploy, place settings.yml and database.yml in your capistrano "shared" directory on production/staging. The deploy script then copies them into ./config/.
 
 This has never been tested outside of my Ubuntu server, so have fun.
 It has an HTTP API, but a very simple one - check http://lndr.me/api for details. (Rather, for an email I sent a friend outlining the API.)
