@@ -1,15 +1,17 @@
 development:
   adapter: mysql2
   database: lndry_dev
-  username: root
+  username: local_user
+  password: local_password
 
 test:
   adapter: mysql2
   database: lndry_test
-  username: root
+  username: local_user
+  password: local_password
 
 production:
   adapter: mysql2
   database: lndry_production
-  username: lndry
-  password: asg9hwei12nwgonsig9
+  username: production_user
+  password: production_password

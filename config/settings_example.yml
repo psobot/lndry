@@ -1,0 +1,18 @@
+development:
+  host: lndry.dev
+  recipient_override: you@you.com
+  incoming_email_key: <some_long_string>
+  postageapp_api_key: get_this_from_postageapp_dot_com
+  secret_token: long_rails_string_for_secrecy_without_dictionary_words
+test:
+  host: test.host
+  recipient_override: you@you.com
+  incoming_email_key: <some_long_string>
+  postageapp_api_key: get_this_from_postageapp_dot_com
+  secret_token: long_rails_string_for_secrecy_without_dictionary_words
+production:
+  host: lndr.me
+  incoming_email_key: <some_long_string>
+  postageapp_api_key: get_this_from_postageapp_dot_com
+  secret_token: long_rails_string_for_secrecy_without_dictionary_words
+
