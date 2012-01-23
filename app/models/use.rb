@@ -21,7 +21,8 @@ class Use < ActiveRecord::Base
   def email_variables
     {
       :resource => resource.name.downcase,
-      :duration => time_ago_in_words(start)
+      :duration => time_ago_in_words(start),
+      :reply => ((resource.type.id == 1) ? "Just reply to this email if you'd like to claim the first available dryer, as well." : "")  #bit of a hack
     }
   end
 
