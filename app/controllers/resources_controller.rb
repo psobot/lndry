@@ -84,7 +84,7 @@ class ResourcesController < ApplicationController
             existing.save!    
           end
 
-          Use.create!(
+          use = Use.create!(
             :user => @user,
             :resource => @resource,
             :start => Time.now.utc,
