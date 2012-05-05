@@ -9,7 +9,7 @@ ActiveAdmin::Dashboards.build do
     end
   end
 
-  section "Recent New Launderers", :priority => 2 do
+  section "New Launderers", :priority => 2 do
     table_for Use.order('id desc').group('user_id').limit(10).each do
       column("Name") { |use| link_to use.user.name, admin_user_path(use.user)  }
       column("Email") { |use| mail_to use.user.email }
