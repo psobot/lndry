@@ -25,6 +25,12 @@ class User < ActiveRecord::Base
     nil
   end
 
+  Type.all.each do |type|
+    define_method "#{type.slug}_uses" do
+      uses.joins(:resource).where('type_id = ?', type.id)
+    end
+  end
+
   def email_variables
     {
       :first_name => (first_name or "resident"),

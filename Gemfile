@@ -11,10 +11,12 @@ gem 'paperclip',      '2.3.16'
 gem 'twitter',        '1.7.2'
 gem 'rinku',          '1.2.2'
 gem 'multi_json',     '1.0.3'
-gem 'will_paginate',  '~> 3.0'
 gem 'active_link_to', '1.0.0'
 gem 'postageapp'
 gem 'mail'
+gem 'activeadmin'
+gem 'meta_search',    '>= 1.1.0.pre'
+gem "formtastic",     "~> 2.1.1"
 
 group :development do
   gem 'capistrano'
