@@ -2,10 +2,11 @@ ActiveAdmin::Dashboards.build do
 
   section "Recent Laundries", :priority => 1 do
     table_for Use.order('id desc').limit(10) do
+      column(:id) { |use| link_to "##{use.id}", admin_use_path(use) }
       column :resource
       column :user
       column(:email) { |use| mail_to use.user.email }
-      column :start, :sortable => :start
+      column(:start, :sortable => :start) { |use| "#{time_ago_in_words use.start} ago" }
     end
   end
 
@@ -13,7 +14,7 @@ ActiveAdmin::Dashboards.build do
     table_for Use.order('id desc').group('user_id').limit(10).each do
       column("Name") { |use| link_to use.user.name, admin_user_path(use.user)  }
       column("Email") { |use| mail_to use.user.email }
-      column("Signed Up") { |use| use.user.created_at }
+      column("Signed Up") { |use| "#{time_ago_in_words use.user.created_at} ago" }
       column("# Uses") { |use| use.user.uses.count }
     end
   end
