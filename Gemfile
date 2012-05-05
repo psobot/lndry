@@ -17,6 +17,7 @@ gem 'mail'
 gem 'activeadmin'
 gem 'meta_search',    '>= 1.1.0.pre'
 gem "formtastic",     "~> 2.1.1"
+gem 'sass-rails',   '~> 3.1.0'
 
 group :development do
   gem 'capistrano'
