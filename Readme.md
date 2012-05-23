@@ -7,12 +7,12 @@ Email washer1@lndr.me when you put in your clothes, and two good things happen:
 
 It's a simple Rails app, but it uses Whenever to send emails out every 2 minutes, and a Postfix alias to recieve mail:
 
-  washer:		"| /usr/local/bin/ruby /var/www/lndr.me/current/script/receive.rb"
-  washer1:	"| /usr/local/bin/ruby /var/www/lndr.me/current/script/receive.rb"
-  washer2:	"| /usr/local/bin/ruby /var/www/lndr.me/current/script/receive.rb"
-  dryer:		"| /usr/local/bin/ruby /var/www/lndr.me/current/script/receive.rb"
-  dryer1:		"| /usr/local/bin/ruby /var/www/lndr.me/current/script/receive.rb"
-  dryer2:		"| /usr/local/bin/ruby /var/www/lndr.me/current/script/receive.rb"
+    washer:		"| /usr/local/bin/ruby /var/www/lndr.me/current/script/receive.rb"
+    washer1:	"| /usr/local/bin/ruby /var/www/lndr.me/current/script/receive.rb"
+    washer2:	"| /usr/local/bin/ruby /var/www/lndr.me/current/script/receive.rb"
+    dryer:		"| /usr/local/bin/ruby /var/www/lndr.me/current/script/receive.rb"
+    dryer1:		"| /usr/local/bin/ruby /var/www/lndr.me/current/script/receive.rb"
+    dryer2:		"| /usr/local/bin/ruby /var/www/lndr.me/current/script/receive.rb"
 
 As well, it makes use of PostageApp (http://postageapp.com) to send transactional email - you'll need an API key from the wonderful folks there.
 Note: to deploy, place settings.yml and database.yml in your capistrano "shared" directory on production/staging. The deploy script then copies them into ./config/.
