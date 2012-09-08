@@ -107,6 +107,8 @@ protected
     @user = User.find_by_email(email)
     if not @user
       @user = User.create! :email => email
+    elsif @user.ignore
+      raise "User has been ignored."
     end
     @user
   end
