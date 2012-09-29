@@ -11,8 +11,8 @@ class Message < ActiveRecord::Base
       logger.debug "Evaluating message for user ##{message.user_id}"
       if message.when and message.when < Time.now.utc
         response = UserMailer.done_reminder_for(message.user, message.use).deliver #TODO: get reference to use
-        if response.status != "ok"
-          logger.warning "Could not immediately send message: #{response.message}"
+        if (response.status != "ok" rescue true)
+          logger.warning "Could not immediately send message: #{response.message rescue 'nil response'}"
         end
         message.destroy
       elsif message.if
@@ -20,13 +20,13 @@ class Message < ActiveRecord::Base
           valid = Resource.send(message.if)
           if valid
             response = UserMailer.available_reminder_for(message.user, valid).deliver  #TODO: get reference to resource
-            if response.status != "ok"
-              logger.warning "Could not immediately send message: #{response.message}"
+            if (response.status != "ok" rescue true)
+              logger.warning "Could not immediately send message: #{response.message rescue 'nil response'}"
             end
             message.destroy
           end
         rescue NoMethodError
-          logger.debug "NoMethodError on Resource for method: \"#{message.if}\""
+          logger.error "NoMethodError on Resource for method: \"#{message.if}\""
         end
       end
     end
