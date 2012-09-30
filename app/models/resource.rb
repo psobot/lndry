@@ -3,11 +3,35 @@ class Resource < ActiveRecord::Base
   belongs_to :type
   has_many :uses
 
-  Type.all.each do |type|
-    # Returns the first available washer/dryer/whatever, or nil if there is none.
+  def self.method_missing(name, *args, &block)
+    if name.to_s.end_with? "_available?"
+      slug = name.to_s.downcase.gsub("_available?", "")
+      self.generate_methods_for Type.find_by_slug! slug
+      self.send(name, *args, &block)
+    else
+      super
+    end
+  rescue
+    super
+  end
+
+  def self.respond_to?(name, *args, &block)
+    if name.to_s.end_with?("_available?") and Type.find_by_slug(name.to_s.downcase.gsub "_available?", "")
+      true
+    else
+      super
+    end
+  end
+
+  def self.generate_methods_for type
     define_singleton_method "#{type.slug}_available?" do
       where('type_id = ?', type.id).not_in_use.first
     end
+  end
+
+  Type.all.each do |type|
+    # Returns the first available washer/dryer/whatever, or nil if there is none.
+    self.generate_methods_for type
   end
 
   def self.all_busy?

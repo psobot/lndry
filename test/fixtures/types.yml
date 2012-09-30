@@ -1,7 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  name: MyString
+washer:
+  id: 1
+  name: Washer
+  slug: washer
 
-two:
-  name: MyString
+dryer:
+  id: 2
+  name: Dryer
+  slug: dryer

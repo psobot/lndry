@@ -5,6 +5,14 @@ class Use < ActiveRecord::Base
   belongs_to :resource
   belongs_to :user
 
+  after_initialize :init
+
+  def init
+    if self.resource && self.resource.type
+      self.start  ||= Time.now.utc
+      self.finish ||= self.start + self.resource.duration
+    end
+  end
 
   def self.total_loads_of_laundry
     joins(:resource).where('resources.type_id = 1').count

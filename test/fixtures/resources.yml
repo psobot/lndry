@@ -1,15 +1,37 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
+washer1:
+  id: 1
   type_id: 1
   order: 1
-  name: MyString
-  location: MyString
-  description: MyText
+  name: 
+  location: VeloCity Laundry Room
+  description:
+  duration: 2040
 
-two:
+washer2:
+  id: 2
   type_id: 1
+  order: 2
+  name: 
+  location: VeloCity Laundry Room
+  description: 
+  duration: 2040
+
+dryer1:
+  id: 3
+  type_id: 2
   order: 1
-  name: MyString
-  location: MyString
-  description: MyText
+  name: 
+  location: VeloCity Laundry Room
+  description: 
+  duration: 3600
+
+dryer2:
+  id: 4
+  type_id: 2
+  order: 2
+  name: 
+  location: VeloCity Laundry Room
+  description: 
+  duration: 3600

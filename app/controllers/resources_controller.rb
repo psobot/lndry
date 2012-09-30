@@ -54,8 +54,6 @@ class ResourcesController < ApplicationController
         use = Use.create!(
           :user => @user,
           :resource => @resource,
-          :start => Time.now.utc,
-          :finish => (Time.now.utc + @resource.duration),
           :raw_email => params[:raw]
         )
         use.create_message
@@ -77,7 +75,7 @@ class ResourcesController < ApplicationController
             @user.save!
           end
 
-          @resource = Resource.find(params[:id])
+          @resource = Resource.find params[:id]
           if @resource.is_in_use?
             existing = Use.current.where('resource_id = ?', @resource.id).first
             existing.finish = Time.now.utc
@@ -87,8 +85,6 @@ class ResourcesController < ApplicationController
           use = Use.create!(
             :user => @user,
             :resource => @resource,
-            :start => Time.now.utc,
-            :finish => (Time.now.utc + @resource.duration),
             :raw_email => "API Call from user ##{auth_user.id}: #{params.to_s}" #TODO: holy fuck this is a quick hack
           )
           use.create_message if params[:send_email]
