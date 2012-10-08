@@ -30,9 +30,22 @@ class ResourcesControllerTest < ActionController::TestCase
     get :index
     assert_response :success
     assert_select 'form'
+  end 
+
+  test "let an existing user know" do
+    user = a User
+    post :letmeknow #, :format => :html, :email_form => { :email => user.email }
+    assert_match flash[:notice], /available/i
+    assert !user.messages.empty?, "No message queued for user!"
   end
 
-  #test "let me know" do
-  #  assert Use.all.empty?
-  #end
+  test "let an anonymous user know" do
+    target = Faker::Internet.email
+    assert_difference 'User.count' do
+      put :letmeknow #, { :email_form => { :email => target } }
+      assert_match flash[:notice], /available/i
+      assert !(User.find_by_email target).messages.empty?, "No message queued for user!"
+    end
+  end
+
 end

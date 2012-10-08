@@ -12,7 +12,7 @@ class Message < ActiveRecord::Base
       if message.when and message.when < Time.now.utc
         response = UserMailer.done_reminder_for(message.user, message.use).deliver #TODO: get reference to use
         if (response.status != "ok" rescue true)
-          logger.warning "Could not immediately send message: #{response.message rescue 'nil response'}"
+          logger.warn "Could not immediately send message: #{response.message rescue 'nil response'}"
         end
         message.destroy
       elsif message.if
@@ -21,7 +21,7 @@ class Message < ActiveRecord::Base
           if valid
             response = UserMailer.available_reminder_for(message.user, valid).deliver  #TODO: get reference to resource
             if (response.status != "ok" rescue true)
-              logger.warning "Could not immediately send message: #{response.message rescue 'nil response'}"
+              logger.warn "Could not immediately send message: #{response.message rescue 'nil response'}"
             end
             message.destroy
           end
