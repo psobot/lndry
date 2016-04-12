@@ -15,7 +15,8 @@ dryer_duration = 3600   #seconds
 
 Resource.create :location => default_location, :type_id => washer.id, :duration => washer_duration, :order => 1
 Resource.create :location => default_location, :type_id => washer.id, :duration => washer_duration, :order => 2
+Resource.create :location => default_location, :type_id => washer.id, :duration => washer_duration, :order => 3
 
 Resource.create :location => default_location, :type_id => dryer.id, :duration => dryer_duration, :order => 1
 Resource.create :location => default_location, :type_id => dryer.id, :duration => dryer_duration, :order => 2
-
+Resource.create :location => default_location, :type_id => dryer.id, :duration => dryer_duration, :order => 3
