@@ -1,9 +1,13 @@
+## Now defunct! Sorry Velocity residents. If you're interested in getting the site working again, contact me at hi@psobot.com.
+
 Lndr.me (formerly lndry) is a laundry tracking app made for the University of Waterloo's VeloCity residence.
 
 Email washer1@lndr.me when you put in your clothes, and two good things happen:
   - You get an email when it's done (based on a timer)
   - Others can tell that the machine is busy
   - You used my app, so I'm happy
+
+<img width="891" alt="lndrme" src="https://cloud.githubusercontent.com/assets/213293/19216250/3cbab54c-8d82-11e6-9a13-bc359bc162ae.png">
 
 It's a simple Rails app, but it uses Whenever to send emails out every 2 minutes, and a Postfix alias to recieve mail:
 
